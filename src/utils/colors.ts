@@ -6,12 +6,12 @@ const colorsTropical = {
     cantelope: '#F8A055'
 }
 
-const colorsBW = {
+const colorsPrimary = {
     black: '#000',
     white: '#fff',
 }
 
 export { 
     colorsTropical, 
-    colorsBW,
+    colorsPrimary,
 };

@@ -1,22 +1,23 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import styles from '../../styles/styles'
-import { colorsTropical } from '../../utils/colors'
+import { colorsPrimary, colorsTropical } from '../../utils/colors'
 import CustomTextInput from '../../components/CustomTextInput'
 import { useFormik } from 'formik'
 import CustomButton from '../../components/CustomButton';
 import { StackScreenProps } from '@react-navigation/stack'
 import { AppStackParams } from '../../navigation/AppStackNavigation';
+import { height, width } from '../../utils/layouts'
 
-interface Props extends StackScreenProps<AppStackParams, 'LoginScreen'>{}
+interface Props extends StackScreenProps<AppStackParams, 'LoginScreen'> { }
 
-
-const LoginScreen = ({ navigation }: Props) => {
+const RegisterScreen = ({ navigation }: Props) => {
 
     const { values, setFieldValue, errors, handleBlur, handleSubmit, touched } = useFormik({
         initialValues: {
             email: '',
             pass: '',
+            repeatPass: '',
         },
         onSubmit: values => console.log('Values', values),
         // validationSchema: ,
@@ -24,10 +25,18 @@ const LoginScreen = ({ navigation }: Props) => {
     });
 
     return (
-        <View style={{ ...styles.container, backgroundColor: colorsTropical.waterMelon }} >
+        <View style={{ ...styles.container, backgroundColor: colorsTropical.banana }} >
+            <CustomButton
+                colors={[ colorsPrimary.white, colorsPrimary.white  ]}
+                onPress={ () => navigation.goBack() }
+                styleView={{ position: 'absolute', top: height * 0.06, left: width * 0.05, width: 50, borderRadius: 100, ...styles.shadow }}
+                iconName='caret-back-outline'
+                iconColor={ colorsTropical.waterMelon }
+            />
+
             <View style={{ ...styles.shadow, ...styles.containerTarget1 }} >
                 <Text style={styles.texTitle}>Chat Miyu</Text>
-                
+
                 <CustomTextInput
                     placeHolder='Usuario'
                     field='email'
@@ -48,32 +57,29 @@ const LoginScreen = ({ navigation }: Props) => {
                     value={values.pass}
                 />
 
+                <CustomTextInput
+                    placeHolder='Repetir contraseña'
+                    field='repeatPass'
+                    saveValue={setFieldValue}
+                    handleBlur={handleBlur}
+                    touched={touched.pass}
+                    error={errors.pass}
+                    value={values.pass}
+                />
+
                 <CustomButton
-                    name='Iniciar Sesión'
+                    name='Crear cuenta nueva'
                     colors={[colorsTropical.waterMelon, colorsTropical.waterMelon]}
                     onPress={handleSubmit}
                     styleText={styles.stylesTxtButon}
                     styleView={{ marginTop: 20, width: '70%' }}
                 />
 
-                <CustomButton
-                    name='Olvidaste tu contraseña'
-                    colors={['transparent', 'transparent']}
-                    onPress={() => console.log('Press..')}
-                    styleText={{ fontSize: 16, color: '#000', textDecorationLine: 'underline' }}
-                />
-
-                <CustomButton
-                    name='Crear cuenta nueva'
-                    colors={['transparent', 'transparent']}
-                    onPress={() => navigation.navigate('RegisterScreen')}
-                    styleText={{ fontSize: 16, color: '#000', }}
-                />
 
             </View>
         </View>
     )
 }
 
-export default LoginScreen;
+export default RegisterScreen;
 

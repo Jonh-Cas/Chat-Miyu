@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { colorsBW, colorsTropical } from "../utils/colors";
 import { height, width } from "../utils/layouts";
 
 
@@ -65,7 +64,7 @@ const styles = StyleSheet.create({
     stylesTxtButon: {
         color: '#fff', 
         fontSize: 18, 
-        fontWeight: 'bold' 
+        fontWeight: 'bold',
       },
     
 })
