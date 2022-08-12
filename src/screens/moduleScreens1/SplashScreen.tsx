@@ -2,7 +2,7 @@ import { Image, Text, View } from 'react-native'
 import React, { useEffect } from 'react'
 import styles from '../../styles/styles';
 import { colorsTropical } from '../../utils/colors';
-// import useTimeout from '../../hooks/useTimeout';
+import useTimeout from '../../hooks/useTimeout';
 import { AppStackParams } from '../../navigation/AppStackNavigation';
 import { StackScreenProps } from '@react-navigation/stack';
 
@@ -16,11 +16,11 @@ const SplashScreen = ({ navigation }: Props) => {
         navigation.replace('LoginScreen')
     }
     
-    // const { enable } = useTimeout({ time, handleFunc })
+    const { enable } = useTimeout({ time, handleFunc })
     
-    // useEffect(() => {
-    //     enable()
-    // }, [])
+    useEffect(() => {
+        enable()
+    }, [])
     
 
 
